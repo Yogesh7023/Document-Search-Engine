@@ -40,14 +40,16 @@ sentence = "Machine Learning is cool"
 for word in sentence.split():
     print(ps.stem(word))
     
+lst1=open('D:\document search/Dictionary1.txt')
+lst2=spl_chars_removal(lst1)
+lst=stopwprds_removal_gensim_custom(lst2)
 search=1
 while search>0:
     b = input("Search keywords? (y/n)\n")
     if (b == 'y'):
         query = input("Enter the search string : ")
         tokenized_query = query.split(" ")
-        lst1=open('D:\document search/Dictionary.txt')
-        tokenized_corpus = [doc.split(" ") for doc in lst1]
+        tokenized_corpus = [doc.split(" ") for doc in lst]
         bm25 = BM25Okapi(tokenized_corpus)
         doc_scores = bm25.get_scores(tokenized_query)
         print(doc_scores)
